@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, SafeAreaView, StyleSheet } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import SecondScreen from "./screens/SecondScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
+
+// You can import supported modules from npm
+import { Card } from "react-native-paper";
+
+// or any files within the Snack
+import AssetExample from "./components/AssetExample";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={{ title: "Home" }}
+          />
+          <Stack.Screen
+            name="SecondScreen"
+            component={SecondScreen}
+            options={{ title: "Second" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    backgroundColor: "#ecf0f1",
+    padding: 8,
   },
 });
